@@ -8,7 +8,7 @@ class AuthorBaseForm(forms.ModelForm):
         model = Author
         fields = '__all__'
         help_texts = {
-            "passcode": "Your passcode must be a combination of 6 digits"dadas
+            "passcode": "Your passcode must be a combination of 6 digits"
         }
 
 
