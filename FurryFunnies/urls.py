@@ -17,8 +17,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+import posts
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('common.urls')),
+    path('post/', include('posts.urls')),
+    path('author/', include('authors.urls')),
 ]

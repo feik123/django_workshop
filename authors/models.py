@@ -22,7 +22,11 @@ class Author(models.Model):
     )
 
     passcode = models.CharField(
+        help_text="Your passcode must be a combination of 6 digits",
+        max_length=6,
+
         validators=[
+            MinLengthValidator(6),
             NumberLengthValidator()
         ]
     )
