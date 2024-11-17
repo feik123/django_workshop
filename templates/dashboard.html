@@ -1,62 +1,38 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block content %}
 
     <main>
         <!-- Dashboard page -->
 
         <!-- Display a heading if there are posts -->
+        {% if posts %}
         <h2>Published Posts</h2>
 
         <!-- Display a heading if there are NO posts -->
+        {% else %}
         <h2>No published posts yet.</h2>
-
+        {% endif %}
         <section id="dashboard">
             <!-- Display a div with information about each post (if any) -->
-
+            {% for post in posts %}
             <!-- first post -->
             <div class="post">
                 <!-- post image -->
                 <img
-                        src="https://cdn.pixabay.com/photo/2017/03/26/00/56/rabbit-2174679_1280.jpg"
+                        src="{{ post.image_url }}"
                         alt="My cool fluffy rabbits img"
                 />
                 <!-- post title -->
-                <h3 class="title">My cool fluffy rabbits</h3>
+                <h3 class="title">{{post.title}}</h3>
                 <!-- post content -->
-                <p class="description">Adorable!</p>
+                <p class="description">{{ post.content|truncatewords:3}}</p>
                 <!-- post details button -->
                 <a class="details-btn" href="#">See More</a>
             </div>
-
+            {% endfor %}
             <!-- second post -->
-            <div class="post">
-                <!-- post image -->
-                <img
-                        src="https://cdn.pixabay.com/photo/2024/03/04/18/39/ai-generated-8612899_1280.jpg"
-                        alt="My brash cat! img"
-                />
-                <!-- post title -->
-                <h3 class="title">My brash cat!</h3>
-                <!-- post content -->
-                <p class="description">My funny cat!</p>
-                <!-- post details button -->
-                <a class="details-btn" href="#">See More</a>
-            </div>
 
-            <!-- third post -->
-            <div class="post">
-                <!-- post image -->
-                <img
-                        src="https://cdn.pixabay.com/photo/2024/04/05/19/04/ai-generated-8678034_1280.jpg"
-                        alt="My clever dog :) img"
-                />
-                <!-- post title -->
-                <h3 class="title">My clever dog :)</h3>
-                <!-- post content -->
-                <p class="description">Einstein is the …</p>
-                <!-- post details button -->
-                <a class="details-btn" href="#">See More</a>
-            </div>
         </section>
     </main>
 {% endblock %}

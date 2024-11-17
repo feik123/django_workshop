@@ -9,11 +9,13 @@ from posts.models import Post
 
 
 class CreateAuthorPage(CreateView):
-    model = Post
+    model = Author
     form_class = AuthorBaseForm
-    success_url = reverse_lazy('index')
+    success_url = reverse_lazy('dash')
     template_name = 'authors/create-author.html'
 
-    # def form_valid(self, form):
-    #     form.save()
-    #     return super().form_valid(form)
+    def form_valid(self, form):
+        form.save()
+        return super().form_valid(form)
+
+
