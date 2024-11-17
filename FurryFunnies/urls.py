@@ -22,6 +22,6 @@ import posts
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('common.urls')),
-    path('post/', include('posts.urls')),
+    path('posts/', include('posts.urls')),
     path('author/', include('authors.urls')),
 ]

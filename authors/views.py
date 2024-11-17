@@ -3,14 +3,13 @@ from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView
 from django.views.generic.edit import BaseFormView
 
-from authors.forms import AuthorBaseForm
+from authors.forms import AuthorCreateForm
 from authors.models import Author
-from posts.models import Post
 
 
 class CreateAuthorPage(CreateView):
     model = Author
-    form_class = AuthorBaseForm
+    form_class = AuthorCreateForm
     success_url = reverse_lazy('dash')
     template_name = 'authors/create-author.html'
 
