@@ -1,8 +1,8 @@
 from django.urls import reverse_lazy
-from django.views.generic import CreateView, DetailView, UpdateView
+from django.views.generic import CreateView, DetailView, UpdateView, DeleteView
 
 from FurryFunnies.utils import get_user_obj
-from posts.forms import PostCreateForm
+from posts.forms import PostCreateForm, PostEditForm, PostDeleteForm
 from posts.models import Post
 
 
@@ -25,7 +25,22 @@ class PostDetails(DetailView):
 
 class PostEdit(UpdateView):
     model = Post
-    form_class = PostCreateForm
+    form_class = PostEditForm
     pk_url_kwarg = 'post_id'
     template_name = 'posts/edit-post.html'
     success_url = reverse_lazy('dash')
+
+
+class PostDelete(DeleteView):
+    model = Post
+    form_class = PostDeleteForm
+    pk_url_kwarg = 'post_id'
+    template_name = 'posts/delete-post.html'
+    success_url = reverse_lazy('dash')
+
+    def get_initial(self):
+        return self.object.__dict__
+
+    def form_invalid(self, form):
+        return self.form_valid(form)
+
