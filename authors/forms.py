@@ -28,8 +28,10 @@ class AuthorBaseForm(forms.ModelForm):
 class AuthorCreateForm(AuthorBaseForm):
     pass
 
+
 class AuthorEditForm(AuthorBaseForm):
-    pass
+    class Meta(AuthorBaseForm.Meta):
+        exclude = ['passcode']
 
 class AuthorDeleteForm(AuthorBaseForm):
     pass

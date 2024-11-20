@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block content %}
 
     <main>
@@ -19,7 +20,7 @@
                     <!-- if the author has NO profile image link -->
                     <img
                             id="details-img"
-                            src="/images/default.png"
+                            src="{% static 'images/default.png' %}"
                             alt="profile img"
                     />
                 {% endif %}
@@ -27,9 +28,13 @@
                 <!-- author's full name -->
                 <p id="details-title">{{ author.first_name }} {{ object.last_name }}</p>
 
-                <!-- number of posts -->
-                <p id="nutrition">Published Posts: {{ object.posts.count }}</p>
-
+                {% if object.posts.count %}
+                    <!-- number of posts -->
+                    <p id="nutrition">Published Posts: {{ object.posts.count }} </p>
+                {% else %}
+                    <p id="nutrition">Published Posts: 0 </p>
+                {% endif %}
+            
                 <div id="info-wrapper">
                     <div id="details-description">
                         <!-- pets number -->
@@ -59,8 +64,8 @@
 
                     <!--Edit and Delete buttons -->
                     <div id="action-buttons">
-                        <a href="#" id="edit-btn">Edit</a>
-                        <a href="#" id="delete-btn">Delete</a>
+                        <a href="{% url 'author-edit' %}" id="edit-btn">Edit</a>
+                        <a href="{% url 'author-delete' %}" id="delete-btn">Delete</a>
                     </div>
                 </div>
             </div>

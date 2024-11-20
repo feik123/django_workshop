@@ -1,8 +1,8 @@
 from django.urls import reverse_lazy
-from django.views.generic import ListView, CreateView, DetailView, DeleteView
+from django.views.generic import ListView, CreateView, DetailView, DeleteView, UpdateView
 
 from FurryFunnies.utils import get_user_obj
-from authors.forms import AuthorCreateForm
+from authors.forms import AuthorCreateForm, AuthorEditForm
 from authors.models import Author
 
 
@@ -24,9 +24,22 @@ class AuthorDetails(DetailView):
         return get_user_obj()
 
 
+class AuthorEdit(UpdateView):
+    model = Author
+    form_class = AuthorEditForm
+    template_name = 'authors/edit-author.html'
+    success_url = reverse_lazy('author-details')
+
+    def get_object(self, queryset=None):
+        return get_user_obj()
 
 
-# class AuthorDelete(DeleteView):
-#     template_name = 'authors/delete-author.html'
-#     success_url = reverse_lazy('index')
+class AuthorDelete(DeleteView):
+    template_name = 'authors/delete-author.html'
+    success_url = reverse_lazy('index')
+
+    def get_object(self, queryset=None):
+        return get_user_obj()
+
+
 
