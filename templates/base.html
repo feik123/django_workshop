@@ -1,3 +1,4 @@
+{% load get_author %}
 {% load static %}
 
 <!DOCTYPE html>
@@ -20,7 +21,10 @@
         </a>
 
         <nav>
+            {% get_author as author %}
+
             {% if author %}
+
                 <!-- If there is an author's profile -->
                 <div class="user">
                     <a href="{% url 'dash' %}">Dashboard</a>

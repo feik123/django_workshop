@@ -8,11 +8,6 @@ from posts.models import Post
 class IndexPage(TemplateView):
     template_name = 'index.html'
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-
-        context['author'] = get_user_obj()
-        return context
 
 
 class DashboardPage(TemplateView):
@@ -21,6 +16,5 @@ class DashboardPage(TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['posts'] = Post.objects.all()
-        context['author'] = get_user_obj()
 
         return context
